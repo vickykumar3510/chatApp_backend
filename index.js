@@ -30,7 +30,6 @@ app.use('/auth', authRoutes);
 
 /* ---------------- Socket Logic ---------------- */
 
-// Track online users: username -> socket.id
 const onlineUsers = {};
 
 io.on('connection', (socket) => {
@@ -166,7 +165,7 @@ app.get('/unread-count', async (req, res) => {
       result[c._id] = c.count;
     });
 
-    res.json(result); // { "user1": 3, "user2": 0 }
+    res.json(result); // 
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error fetching unread counts" });
@@ -207,14 +206,12 @@ app.get("/chat-dates", async (req, res) => {
       result[c._id] = c.lastDate;
     });
 
-    res.json(result); // { "john": "2024-02-01T10:30:00Z" }
+    res.json(result); 
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error fetching chat dates" });
   }
 });
-
-
 
 /* ---------------- Server ---------------- */
 const PORT = process.env.PORT || 5001;
