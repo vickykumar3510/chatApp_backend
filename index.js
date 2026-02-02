@@ -23,7 +23,8 @@ const io = new Server(server, {
     origin: allowedOrigins,
     methods: ["GET", "POST"],
     credentials: true
-  }
+  },
+  transports: ["polling"],
 });
 
 app.use(cors({
