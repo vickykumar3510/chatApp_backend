@@ -13,25 +13,11 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://chat-app-frontend-ten-nu.vercel.app"
-];
-
 const io = new Server(server, {
-  cors: {
-    origin: allowedOrigins,
-    methods: ["GET", "POST"],
-    credentials: true
-  },
-  transports: ["websocket", "polling"],
+    cors: { origin: 'https://chat-app-frontend-ten-nu.vercel.app/' }
 });
 
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true
-}));
-
+app.use(cors());
 app.use(express.json());
 
 /* ---------------- DB ---------------- */
