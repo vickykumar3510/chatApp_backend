@@ -186,6 +186,26 @@ app.get('/users', async (req, res) => {
   }
 });
 
+app.delete('/users/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'Invalid user id' });
+    }
+
+    const deleted = await User.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting user:', err);
+    res.status(500).json({ message: 'Error deleting user' });
+  }
+});
+
 /* ---- UNREAD COUNT ---- */
 app.get('/unread-count', async (req, res) => {
   const { currentUser } = req.query;
