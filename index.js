@@ -15,7 +15,7 @@ const server = http.createServer(app);
 
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://chat-app-frontend-ten-nu.vercel.app'
+  'https://chat-app-tool-ten-nu.vercel.app/'
 ];
 
 console.log('Allowed origins:', allowedOrigins);
